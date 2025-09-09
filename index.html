@@ -643,6 +643,8 @@
                   </a>
                 </div>
               </div>
+              <h2 class="title">Portfolio</h2>
+              <button id="downloadPDF" class="btn">Download Portfolio as PDF</button>
             </div>
           </div>
           <div class="tab-grid portfolio-box service">
@@ -747,5 +749,25 @@
 
 <!-- Javascript file script -->
 <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  document.getElementById("downloadPDF").addEventListener("click", () => {
+    // pilih area portfolio
+    const element = document.querySelector(".portfolio");
+
+    // opsi pdf
+    const opt = {
+      margin:       0.5,
+      filename:     'portfolio-zhidan.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // generate pdf
+    html2pdf().set(opt).from(element).save();
+  });
+</script>
   </body>
+
 </html>
